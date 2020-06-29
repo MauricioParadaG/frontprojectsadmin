@@ -1,8 +1,22 @@
 import React from 'react';
+import {Link} from 'react-router-dom';
+import SidebarComponent from '../layout/Sidebar.component';
 
 const ProjectsComponent = () => {
     return (
-        <h1>projects</h1>
+        <div className="container-app">
+            <aside>
+                <SidebarComponent/>
+            </aside>
+
+            <div className="section-main">
+                <main>
+                    <div className="container-tasks">
+
+                    </div>
+                </main>
+            </div>
+        </div>
     )
 }
 

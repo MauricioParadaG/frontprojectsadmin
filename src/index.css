@@ -180,13 +180,13 @@ aside  {
 }
 
 /** Listed Tasks **/
-.tasks-container {
+.container-tasks {
   padding: 4rem;
 }
 
 
 
-.tasks-listed {
+.listed-tasks {
   max-width: 600px;
   margin: 0 auto;
 }
@@ -301,21 +301,21 @@ aside  {
     border-radius: 1rem;
 }
 
-.fild-form {
+.field-form {
     display: flex;
     margin-bottom: 2rem;
     align-items: center;
 }
-.fild-form:last-of-type {
+.field-form:last-of-type {
   margin: 0;
 }
-.fild-form label {
+.field-form label {
   flex: 0 0 100px;
   font-family: var(--textFont);
 }
-.fild-form input[type="password"],
-.fild-form input[type="email"], 
-.fild-form input[type="text"] {
+.field-form input[type="password"],
+.field-form input[type="email"], 
+.field-form input[type="text"] {
   border: 1px solid #e1e1e1;
   padding: 1rem;
   flex: 1;
