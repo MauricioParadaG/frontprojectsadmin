@@ -12,7 +12,7 @@ const ProjectsComponent = () => {
             <div className="section-main">
                 <main>
                     <div className="container-tasks">
-
+                
                     </div>
                 </main>
             </div>
