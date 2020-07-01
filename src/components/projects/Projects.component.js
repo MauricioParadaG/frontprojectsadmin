@@ -3,6 +3,7 @@ import {Link} from 'react-router-dom';
 import SidebarComponent from '../layout/Sidebar.component';
 import HeaderComponent from '../layout/Header.component';
 import FormTaskComponent from '../tasks/FormTask.component';
+import ListedTasksComponent from '../tasks/ListedTasks.component';
 
 const ProjectsComponent = () => {
     return (
@@ -17,7 +18,7 @@ const ProjectsComponent = () => {
                 <main>
                 <FormTaskComponent/>
                     <div className="container-tasks">
-                        
+                        <ListedTasksComponent/>
                     </div>
                 </main>
             </div>

@@ -226,10 +226,10 @@ aside  {
   margin: 0;
 }
 
-.state {
+.status {
   margin-right: 1rem;
 }
-.state button, 
+.status button, 
 .message {
   font-weight: 900;
   font-family: var(--textFont);
