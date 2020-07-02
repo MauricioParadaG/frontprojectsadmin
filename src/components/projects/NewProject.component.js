@@ -1,6 +1,13 @@
 import React, {useContext, useState} from 'react';
 
+import {ProjectContext} from '../../context/projects/projectContext';
+
 const NewProjectComponent = () => {
+
+    // getting the state of the form with useContext and Reducer -> projectsContext.newProjectFormState
+    const projectsContext = useContext(ProjectContext);
+
+
 
     const [newProject, setNewProjectState] = useState({
         name:''
@@ -21,34 +28,45 @@ const NewProjectComponent = () => {
         event.preventDefault();
     }
 
+    const onClick = () => {
+        projectsContext.setShowFormState()
+    }
+
 
     return (
         <>
             <button
             type="button"
             className="btn btn-block btn-primary"
+            onClick={onClick}
             >
             New Project   
             </button>
 
-            <form 
-            className="form-new-project"
-            onSubmit={onSubmit}
-            >
-                <input type="text"
-                className="input-text"
-                placeholder="Project Name"
-                name="name"
-                onChange={onChangeProject}
-                value={newProject.name}
-                />
+            { (projectsContext.newProjectFormState) ?
+                <form 
+                className="form-new-project"
+                onSubmit={onSubmit}
+                >
+                    <input type="text"
+                    className="input-text"
+                    placeholder="Project Name"
+                    name="name"
+                    onChange={onChangeProject}
+                    value={newProject.name}
+                    />
+    
+                    <input type="submit"
+                    className="btn btn-block btn-primary"
+                    value="Add Project"
+                    />
+    
+                </form>
 
-                <input type="submit"
-                className="btn btn-block btn-primary"
-                value="Add Project"
-                />
+                :
+                null 
 
-            </form>
+            }
 
         </>
     )

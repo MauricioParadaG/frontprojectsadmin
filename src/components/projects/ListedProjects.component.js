@@ -1,18 +1,19 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import ProjectComponent from './Project.component';
+import {ProjectContext} from '../../context/projects/projectContext';
 
 const ListedProjectsComponent = () => {
 
-    const newProjects = [
-        {name: 'Project A'},
-        {name: 'Project B'},
-        {name: 'Project C'}
-    ];
+    //useContext State-> projectsContext.newProjectsState
+    const projectsContext = useContext(ProjectContext);
+
+    if (projectsContext.newProjectsState.length === 0) return null; 
 
     return (
         <ul className="listed-projects">
-            {newProjects.map(project =>(
+            {projectsContext.newProjectsState.map(project =>(
             <ProjectComponent
+            key={project.id}
             newProjectsState={project}
             />
         ))}

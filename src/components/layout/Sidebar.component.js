@@ -7,7 +7,7 @@ const SidebarComponent = () => {
         <aside>
             <h1>MERN<span>Tasks</span> </h1>
 
-            <NewProjectComponent></NewProjectComponent>
+            <NewProjectComponent/>
             
             <div className="projects">
                 <h2>Projects List</h2>
