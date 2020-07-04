@@ -19,6 +19,10 @@ const ListedTasksComponent = () => {
         {name: 'Task 4', completed: false},
     ];
 
+    const onClick = () => {
+        projectsContext.setDeleteProjectState(actualProject.id)
+    }
+
     return (
         <>
             <h2>Project: {actualProject.name}</h2>
@@ -37,6 +41,7 @@ const ListedTasksComponent = () => {
         
             <button type="button"
                 className="btn btn-primary"
+                onClick = {onClick}
                 >
                 Delete Project &times;
             </button>

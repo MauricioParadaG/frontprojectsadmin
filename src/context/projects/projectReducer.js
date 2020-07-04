@@ -1,4 +1,4 @@
-import {FORM_PROJECT, GET_PROJECTS, ADDNEWPROJECT_TOLIST, FORM_VALIDATION, SELECTED_PROJECT} from '../../types/index';
+import {FORM_PROJECT, GET_PROJECTS, ADDNEWPROJECT_TOLIST, FORM_VALIDATION, SELECTED_PROJECT, DELETE_PROJECT} from '../../types/index';
 
 export default (state, action) => {
     switch (action.type){
@@ -33,6 +33,13 @@ export default (state, action) => {
                 ...state,
                 selectedProject: state.newProjects.filter(selectedProject => selectedProject.id === action.payload)
             }    
+
+        case DELETE_PROJECT:
+            return {
+                ...state,
+                newProjects: state.newProjects.filter(deleteProject => deleteProject.id !== action.payload),
+                selectedProject: null
+            }      
 
         default: 
         return state;

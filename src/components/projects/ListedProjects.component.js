@@ -12,7 +12,7 @@ const ListedProjectsComponent = () => {
         projectsContext.setNewProjectsState();
     }, []);
 
-    if (projectsContext.newProjectsState.length === 0) return null; 
+    if (projectsContext.newProjectsState.length === 0) return <p>Add your first project</p>; 
 
     
 

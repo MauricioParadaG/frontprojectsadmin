@@ -3,7 +3,7 @@ import {v4 as uuid} from "uuid";
 
 import projectContext from './projectContext';
 import projectReducer from './projectReducer';
-import {FORM_PROJECT, GET_PROJECTS, ADDNEWPROJECT_TOLIST, FORM_VALIDATION, SELECTED_PROJECT} from '../../types/index';
+import {FORM_PROJECT, GET_PROJECTS, ADDNEWPROJECT_TOLIST, FORM_VALIDATION, SELECTED_PROJECT, DELETE_PROJECT} from '../../types/index';
 
 // Simulando datos que llegan de afuera, no más
 
@@ -70,6 +70,13 @@ const ProjectState = props => {
         })
     }
 
+    const setDeleteProjectState = newProjectID =>{
+        dispatch({
+            type: DELETE_PROJECT,
+            payload: newProjectID
+        })
+    }
+
 
     return (
         <projectContext.Provider
@@ -82,7 +89,8 @@ const ProjectState = props => {
             setNewProjectsState,
             setAddToListState,
             setShowErrorFormState,
-            setselectedProjectState
+            setselectedProjectState,
+            setDeleteProjectState
           }}
         >
             {props.children}
