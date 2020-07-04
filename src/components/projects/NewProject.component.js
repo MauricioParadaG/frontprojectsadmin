@@ -27,7 +27,10 @@ const NewProjectComponent = () => {
     const onSubmit = event => {
         event.preventDefault();
 
-        if (newProject.name === '') return;
+        if (newProject.name === '') {
+            projectsContext.setShowErrorFormState();
+            return;
+        }
 
         projectsContext.setAddToListState(newProject);
 
@@ -76,6 +79,13 @@ const NewProjectComponent = () => {
                 null 
 
             }
+
+        { (projectsContext.formErrorState) ?
+          <p className="message error">A project name is required</p>
+
+        : null
+        
+        }
 
         </>
     )
