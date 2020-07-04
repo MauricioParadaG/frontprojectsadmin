@@ -23,7 +23,7 @@ const ListedProjectsComponent = () => {
             key={project.id}
             newProjectsState={project}
             />
-        ))}
+        ))} 
         </ul>
     )
 }

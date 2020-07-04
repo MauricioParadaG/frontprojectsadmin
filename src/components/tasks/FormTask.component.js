@@ -1,6 +1,15 @@
-import React from 'react';
+import React, {useContext} from 'react';
+import {ProjectContext} from '../../context/projects/projectContext';
 
 const FormTaskComponent = () => {
+
+    const projectsContext = useContext(ProjectContext);
+
+    // Checking that a project got selected
+    if(!projectsContext.selectedProjectState) return null;
+
+    const [actualProject] = projectsContext.selectedProjectState;
+
     return (
         <div className="formular">
             <form>

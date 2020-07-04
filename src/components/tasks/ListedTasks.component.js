@@ -1,7 +1,16 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import TaskComponent from './Task.component';
 
+import {ProjectContext} from '../../context/projects/projectContext';
+
 const ListedTasksComponent = () => {
+
+    const projectsContext = useContext(ProjectContext);
+
+    // Checking that a project got selected
+    if(!projectsContext.selectedProjectState) return <h2>Select a project</h2>;
+
+    const [actualProject] = projectsContext.selectedProjectState;
 
     const newTasks = [
         {name: 'Task 1', completed: true},
@@ -12,7 +21,7 @@ const ListedTasksComponent = () => {
 
     return (
         <>
-            <h2>Project: ProjectB</h2>
+            <h2>Project: {actualProject.name}</h2>
 
             <ul className="listed-tasks">
 
