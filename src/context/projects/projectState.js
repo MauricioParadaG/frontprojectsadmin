@@ -1,8 +1,9 @@
 import React, { useReducer } from 'react';
+import {v4 as uuid} from "uuid";
 
 import projectContext from './projectContext';
 import projectReducer from './projectReducer';
-import {FORM_PROJECT, GET_PROJECTS} from '../../types/index';
+import {FORM_PROJECT, GET_PROJECTS, ADDNEWPROJECT_TOLIST} from '../../types/index';
 
 // Simulando datos que llegan de afuera, no más
 
@@ -42,6 +43,16 @@ const ProjectState = props => {
         })
     }
 
+    // Put newProjects into the list
+    const setAddToListState = newProject =>{
+        newProject.id = uuid();
+        // Insert to newProjects State
+        dispatch({
+            type: ADDNEWPROJECT_TOLIST,
+            payload: newProject
+        })
+    }
+
 
     return (
         <projectContext.Provider
@@ -49,7 +60,8 @@ const ProjectState = props => {
             newProjectsState: state.newProjects,
             newProjectFormState: state.form,
             setShowFormState,
-            setNewProjectsState
+            setNewProjectsState,
+            setAddToListState
           }}
         >
             {props.children}

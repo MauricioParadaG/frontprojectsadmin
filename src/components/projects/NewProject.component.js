@@ -26,6 +26,15 @@ const NewProjectComponent = () => {
 
     const onSubmit = event => {
         event.preventDefault();
+
+        if (newProject.name === '') return;
+
+        projectsContext.setAddToListState(newProject);
+
+        setNewProjectState({
+            name:''
+        })
+
     }
 
     const onClick = () => {
