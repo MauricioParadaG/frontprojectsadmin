@@ -1,9 +1,9 @@
 import React, { useReducer } from 'react';
-import {v4 as uuid} from "uuid";
+//import {v4 as uuid} from "uuid";
 
-import TaskContext from './taskContext';
+import taskContext from './taskContext';
 import TaskReducer from './taskReducer';
-import {FORM_PROJECT, GET_PROJECTS, ADDNEWPROJECT_TOLIST, FORM_VALIDATION, SELECTED_PROJECT, DELETE_PROJECT} from '../../types/index';
+import {GET_TASKSBYID} from '../../types/index';
 
 // Simulando datos que llegan de afuera, no más
 
@@ -12,43 +12,42 @@ import {FORM_PROJECT, GET_PROJECTS, ADDNEWPROJECT_TOLIST, FORM_VALIDATION, SELEC
 
 const TaskState = props => {
 
-    const newProjects = [
-        {id: 1, name: 'Project A'},
-        {id: 2, name: 'Project B'},
-        {id: 3, name: 'Project C'},
-        {id: 4, name: 'MERN'},
+    const newTasks = [
+        
     ];
 
     const initialState = {
-        tasks : [],
+        newTasks : [
+        {name: 'Task 1', completed: true, projectId: 1},
+        {name: 'Task 2', completed: false, projectId: 2},
+        {name: 'Task 3', completed: true, projectId: 3},
+        {name: 'Task 4', completed: false, projectId: 4},
+        {name: 'Task 5', completed: true, projectId: 1},
+        {name: 'Task 6', completed: false, projectId: 2}
+    ],
         //form : false,
-        formError: false,
-        //selectedProject: null
+        //formError: false,
+        taskProjectData: null
     }
 
     // Dispatch
     const [state, dispatch] = useReducer(TaskReducer, initialState);
 
+    // Get tasks by projectId from outside
+    const setNewTasksState = projectId =>{
+        dispatch({
+            type: GET_TASKSBYID,
+            payload: projectId
+        })
+    };
+
     // CRUD Project
 
-    const setShowFormState = () =>{
-        dispatch({
-            type: FORM_PROJECT
-        })
-    }
-
-    // Get name projects from inside this state
-    const setNewProjectsState = () =>{
-        dispatch({
-            type: GET_PROJECTS,
-            payload: newProjects
-        })
-    }
-
-    // Put newProjects into the list
+/*
+    // Put newTasks into the list
     const setAddToListState = newProject =>{
         newProject.id = uuid();
-        // Insert to newProjects State
+        // Insert to newTasks State
         dispatch({
             type: ADDNEWPROJECT_TOLIST,
             payload: newProject
@@ -76,12 +75,16 @@ const TaskState = props => {
             payload: newProjectID
         })
     }
+*/
 
 
     return (
-        <TaskContext.Provider
+        <taskContext.Provider
         value={{
-            newProjectsState: state.newProjects,
+            newTasksState: state.newTasks,
+            taskProjectDataState: state.taskProjectData,
+            setNewTasksState
+         /*
             newProjectFormState: state.form,
             formErrorState: state.formError,
             selectedProjectState: state.selectedProject,
@@ -91,10 +94,11 @@ const TaskState = props => {
             setShowErrorFormState,
             setselectedProjectState,
             setDeleteProjectState
+        */
           }}
         >
             {props.children}
-        </TaskContext.Provider>
+        </taskContext.Provider>
     )
 
 };

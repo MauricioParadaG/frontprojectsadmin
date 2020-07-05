@@ -1,23 +1,26 @@
-import React, {useContext} from 'react';
+import React, {useContext, useEffect} from 'react';
 import TaskComponent from './Task.component';
 
 import {ProjectContext} from '../../context/projects/projectContext';
+import {taskContext} from '../../context/task/taskContext';
 
 const ListedTasksComponent = () => {
 
     const projectsContext = useContext(ProjectContext);
+    const tasksContext = useContext(taskContext);
 
     // Checking that a project got selected
     if(!projectsContext.selectedProjectState) return <h2>Select a project</h2>;
 
     const [actualProject] = projectsContext.selectedProjectState;
 
-    const newTasks = [
-        {name: 'Task 1', completed: true},
-        {name: 'Task 2', completed: false},
-        {name: 'Task 3', completed: true},
-        {name: 'Task 4', completed: false},
-    ];
+    const newTasks = [];
+/*
+    // Getting the data of tasks from the Database
+    useEffect(() => {
+        tasksContext.setNewProjectsState();
+    }, []);
+*/
 
     const onClick = () => {
         projectsContext.setDeleteProjectState(actualProject.id)
