@@ -1,4 +1,4 @@
-import React, {useContext, useEffect} from 'react';
+import React, {useContext} from 'react';
 import TaskComponent from './Task.component';
 
 import {ProjectContext} from '../../context/projects/projectContext';
@@ -14,7 +14,7 @@ const ListedTasksComponent = () => {
 
     const [actualProject] = projectsContext.selectedProjectState;
 
-    const newTasks = [];
+    //const newTasks = [];
 /*
     // Getting the data of tasks from the Database
     useEffect(() => {
@@ -32,11 +32,12 @@ const ListedTasksComponent = () => {
 
             <ul className="listed-tasks">
 
-            { newTasks.length === 0 ?
+            { tasksContext.taskProjectDataState.length === 0 ?
             <li className="task"><p>There is not a task created yet</p></li>
             :
-            newTasks.map(task =>(
+            tasksContext.taskProjectDataState.map(task =>(
             <TaskComponent
+            key={task.id}
             newTasksState={task}
             />
         ))}

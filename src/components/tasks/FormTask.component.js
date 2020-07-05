@@ -10,9 +10,13 @@ const FormTaskComponent = () => {
 
     const [actualProject] = projectsContext.selectedProjectState;
 
+    const onSubmit = event => {
+        event.preventDefault();
+    }
+
     return (
         <div className="formular">
-            <form>
+            <form onSubmit={onSubmit}>
                 <div className="container-input">
                     <input type="text"
                     className="input-text"

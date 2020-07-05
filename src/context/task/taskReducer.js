@@ -1,8 +1,8 @@
-import {FORM_PROJECT, GET_PROJECTS, ADDNEWPROJECT_TOLIST, FORM_VALIDATION, SELECTED_PROJECT, DELETE_PROJECT, GET_TASKSBYID} from '../../types/index';
+import {GET_TASKSBYID, ADDNEWTASK_TOLIST} from '../../types/index';
 
 export default (state, action) => {
     switch (action.type){
-
+/*
         case FORM_PROJECT:
             return {
                 ...state,
@@ -41,12 +41,20 @@ export default (state, action) => {
                 newProjects: state.newProjects.filter(deleteProject => deleteProject.id !== action.payload),
                 selectedProject: null
             }  
+*/
             
         case GET_TASKSBYID:
             return {
                 ...state,
                 taskProjectData: state.newTasks.filter(newTask => newTask.projectId === action.payload)
-            }      
+            }
+
+        case ADDNEWTASK_TOLIST:
+            return {
+                ...state,
+                newTasks: [...state.newTasks, action.payload],
+                //formError: false
+            }
 
         default: 
         return state;
