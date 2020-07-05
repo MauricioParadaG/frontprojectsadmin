@@ -6,20 +6,25 @@ import NewAccountComponent from './components/auth/NewAccount.component';
 import ProjectsComponent from './components/projects/Projects.component';
 
 import ProjectState from './context/projects/projectState';
+import TaskState from './context/task/taskState';
 
 
 function App() {
   return (
     <ProjectState>
-      <Router>
-        <Switch>
+      <TaskState>
+        
+        <Router>
+          <Switch>
 
-          <Route exact path="/" component={LoginComponent}/>
-          <Route exact path="/new-account" component={NewAccountComponent}/>
-          <Route exact path="/projects" component={ProjectsComponent}/>
-          
-        </Switch>
-      </Router>
+            <Route exact path="/" component={LoginComponent}/>
+            <Route exact path="/new-account" component={NewAccountComponent}/>
+            <Route exact path="/projects" component={ProjectsComponent}/>
+            
+          </Switch>
+        </Router>
+
+      </TaskState>
     </ProjectState>
   );
 }

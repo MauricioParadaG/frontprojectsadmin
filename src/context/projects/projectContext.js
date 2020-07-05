@@ -1,14 +1,7 @@
-import React, {createContext } from 'react';
+import {createContext } from 'react';
 
-export  const ProjectContext = createContext();
+export const ProjectContext = createContext();
 
-const ProjectProvider = (props) => {
 
-    return (
-        <div>
-            
-        </div>
-    )
-}
 
-export default ProjectContext
+export default ProjectContext;
