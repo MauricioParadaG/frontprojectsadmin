@@ -3,7 +3,7 @@ import React, { useReducer } from 'react';
 
 import taskContext from './taskContext';
 import TaskReducer from './taskReducer';
-import {GET_TASKSBYID, ADDNEWTASK_TOLIST, FORM_VALIDATION} from '../../types/index';
+import {GET_TASKSBYID, ADDNEWTASK_TOLIST, FORM_VALIDATION, DELETE_TASK} from '../../types/index';
 
 // Simulando datos que llegan de afuera, no más
 
@@ -59,6 +59,14 @@ const TaskState = props => {
     }
 
     
+    const setDeleteTask = newTaskId =>{
+        dispatch({
+            type: DELETE_TASK,
+            payload: newTaskId
+        })
+    }
+
+    
 
 /*
     // Put newTasks into the list
@@ -97,7 +105,8 @@ const TaskState = props => {
             formErrorState: state.formError,
             setNewTasksState,
             setAddTaskToList,
-            setShowErrorFormState
+            setShowErrorFormState,
+            setDeleteTask
          /*
             newProjectFormState: state.form,
             formErrorState: state.formError,
