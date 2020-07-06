@@ -1,4 +1,4 @@
-import {GET_TASKSBYID, ADDNEWTASK_TOLIST} from '../../types/index';
+import {GET_TASKSBYID, ADDNEWTASK_TOLIST, FORM_VALIDATION} from '../../types/index';
 
 export default (state, action) => {
     switch (action.type){
@@ -53,7 +53,13 @@ export default (state, action) => {
             return {
                 ...state,
                 newTasks: [...state.newTasks, action.payload],
-                //formError: false
+                formError: false
+            }
+
+        case FORM_VALIDATION:
+            return {
+                ...state,
+                formError: true
             }
 
         default: 

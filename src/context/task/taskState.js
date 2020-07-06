@@ -3,7 +3,7 @@ import React, { useReducer } from 'react';
 
 import taskContext from './taskContext';
 import TaskReducer from './taskReducer';
-import {GET_TASKSBYID, ADDNEWTASK_TOLIST} from '../../types/index';
+import {GET_TASKSBYID, ADDNEWTASK_TOLIST, FORM_VALIDATION} from '../../types/index';
 
 // Simulando datos que llegan de afuera, no más
 
@@ -26,7 +26,7 @@ const TaskState = props => {
         {id: 6, name: 'Task 6', completed: false, projectId: 2}
     ],
         //form : false,
-        //formError: false,
+        formError: false,
         taskProjectData: null
     }
 
@@ -51,6 +51,13 @@ const TaskState = props => {
         })
     }
 
+    // Errors while trying to add a newTask
+    const setShowErrorFormState = () =>{
+        dispatch({
+            type: FORM_VALIDATION
+        })
+    }
+
     
 
 /*
@@ -64,12 +71,6 @@ const TaskState = props => {
         })
     }
 
-    // Errors while trying to add a newProject
-    const setShowErrorFormState = () =>{
-        dispatch({
-            type: FORM_VALIDATION
-        })
-    }
 
     // Changing the selected proyect information
     const setselectedProjectState = newProjectID =>{
@@ -93,8 +94,10 @@ const TaskState = props => {
         value={{
             newTasksState: state.newTasks,
             taskProjectDataState: state.taskProjectData,
+            formErrorState: state.formError,
             setNewTasksState,
-            setAddTaskToList
+            setAddTaskToList,
+            setShowErrorFormState
          /*
             newProjectFormState: state.form,
             formErrorState: state.formError,
