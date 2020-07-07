@@ -3,6 +3,7 @@ import TaskComponent from './Task.component';
 
 import {ProjectContext} from '../../context/projects/projectContext';
 import {taskContext} from '../../context/task/taskContext';
+import {CSSTransition, TransitionGroup} from 'react-transition-group';
 
 const ListedTasksComponent = () => {
 
@@ -35,12 +36,21 @@ const ListedTasksComponent = () => {
             { tasksContext.taskProjectDataState.length === 0 ?
             <li className="task"><p>There is not a task created yet</p></li>
             :
-            tasksContext.taskProjectDataState.map(task =>(
-            <TaskComponent
-            key={task.id}
-            newTasksState={task}
-            />
-        ))}
+            <TransitionGroup>
+            {tasksContext.taskProjectDataState.map(task =>(
+                <CSSTransition
+                key={task.id}
+                timeout={200}
+                classNames="task">
+                    <TaskComponent
+                    newTasksState={task}
+                    />
+                </CSSTransition>
+            ))}
+        
+            </TransitionGroup>
+
+            }
             </ul>
         
             <button type="button"
