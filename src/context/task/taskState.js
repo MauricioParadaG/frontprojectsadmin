@@ -3,7 +3,7 @@ import React, { useReducer } from 'react';
 
 import taskContext from './taskContext';
 import TaskReducer from './taskReducer';
-import {GET_TASKSBYID, ADDNEWTASK_TOLIST, FORM_VALIDATION, DELETE_TASK} from '../../types/index';
+import {GET_TASKSBYID, ADDNEWTASK_TOLIST, FORM_VALIDATION, DELETE_TASK, COMPLETE_TASK} from '../../types/index';
 
 // Simulando datos que llegan de afuera, no más
 
@@ -65,6 +65,13 @@ const TaskState = props => {
             payload: newTaskId
         })
     }
+    // Change the complete from true to false 
+    const setCompleteTask = newTask =>{
+        dispatch({
+            type: COMPLETE_TASK,
+            payload: newTask
+        })
+    }
 
     
 
@@ -106,7 +113,8 @@ const TaskState = props => {
             setNewTasksState,
             setAddTaskToList,
             setShowErrorFormState,
-            setDeleteTask
+            setDeleteTask,
+            setCompleteTask
          /*
             newProjectFormState: state.form,
             formErrorState: state.formError,

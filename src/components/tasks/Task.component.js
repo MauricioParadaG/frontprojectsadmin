@@ -12,6 +12,15 @@ const TaskComponent = props => {
         tasksContext.setNewTasksState(props.newTasksState.projectId);
     }
 
+    const onClickComplete = () => {
+        if(props.newTasksState.completed){
+            props.newTasksState.completed = false;
+        } else {
+            props.newTasksState.completed = true;
+        }
+        tasksContext.setCompleteTask(props.newTasksState);
+    }
+
     return (
         <>
           <li className="task shadow">
@@ -22,11 +31,13 @@ const TaskComponent = props => {
                 
                 <button type="button"
                 className="complete"
+                onClick={onClickComplete}
                 >Completed</button>
                 
                 : 
                 <button type="button"
                 className="incomplete"
+                onClick={onClickComplete}
                 >Not Completed</button>
                 }
             </div>
