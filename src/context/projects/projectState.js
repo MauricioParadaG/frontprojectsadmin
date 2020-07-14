@@ -8,7 +8,7 @@ import {FORM_PROJECT, GET_PROJECTS, ADDNEWPROJECT_TOLIST, FORM_VALIDATION, SELEC
 // Simulando datos que llegan de afuera, no más
 
 
-/////////////////////////////////
+////////////////////////////////
 
 const ProjectState = props => {
 
