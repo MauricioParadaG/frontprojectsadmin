@@ -8,7 +8,7 @@ import {GET_TASKSBYID, ADDNEWTASK_TOLIST, FORM_VALIDATION, DELETE_TASK, COMPLETE
 // Simulando datos que llegan de afuera, no más
 
 
-//////////////////////////////////
+/////////////////////////////////
 
 const TaskState = props => {
 
