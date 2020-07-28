@@ -1,4 +1,4 @@
-import {GET_TASKSBYID, ADDNEWTASK_TOLIST, FORM_VALIDATION, DELETE_TASK, COMPLETE_TASK} from '../../types/index';
+import {GET_TASKSBYID, ADDNEWTASK_TOLIST, FORM_VALIDATION, DELETE_TASK, COMPLETE_TASK, ONGOING_TASK} from '../../types/index';
 
 export default (state, action) => {
     switch (action.type){
@@ -76,6 +76,12 @@ export default (state, action) => {
                     action.payload
                     : newTask
                     )
+            }
+
+        case ONGOING_TASK:
+            return {
+                ...state,
+                taskSelected: action.payload
             }
 
         default: 

@@ -3,9 +3,9 @@ import React, { useReducer } from 'react';
 
 import taskContext from './taskContext';
 import TaskReducer from './taskReducer';
-import {GET_TASKSBYID, ADDNEWTASK_TOLIST, FORM_VALIDATION, DELETE_TASK, COMPLETE_TASK} from '../../types/index';
+import {GET_TASKSBYID, ADDNEWTASK_TOLIST, FORM_VALIDATION, DELETE_TASK, COMPLETE_TASK, ONGOING_TASK} from '../../types/index';
 
-// Simulando datos que llegan de afuera, no más
+// Simulando datos que llegan de 
 
 
 /////////////////////////////////
@@ -27,7 +27,8 @@ const TaskState = props => {
     ],
         //form : false,
         formError: false,
-        taskProjectData: null
+        taskProjectData: null,
+        taskSelected: null
     }
 
     // Dispatch
@@ -73,7 +74,13 @@ const TaskState = props => {
         })
     }
 
-    
+    // Get a task that is going to be edited
+    const getOngoingTask = newTask =>{
+        dispatch({
+            type: ONGOING_TASK,
+            payload: newTask
+        })
+    }
 
 /*
     // Put newTasks into the list
@@ -110,22 +117,13 @@ const TaskState = props => {
             newTasksState: state.newTasks,
             taskProjectDataState: state.taskProjectData,
             formErrorState: state.formError,
+            selectedTask: state.taskSelected,
             setNewTasksState,
             setAddTaskToList,
             setShowErrorFormState,
             setDeleteTask,
-            setCompleteTask
-         /*
-            newProjectFormState: state.form,
-            formErrorState: state.formError,
-            selectedProjectState: state.selectedProject,
-            setShowFormState,
-            setNewProjectsState,
-            setAddToListState,
-            setShowErrorFormState,
-            setselectedProjectState,
-            setDeleteProjectState
-        */
+            setCompleteTask,
+            getOngoingTask
           }}
         >
             {props.children}

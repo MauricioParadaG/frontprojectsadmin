@@ -21,6 +21,11 @@ const TaskComponent = props => {
         tasksContext.setCompleteTask(props.newTasksState);
     }
 
+    const onClickEdit = () => {
+        tasksContext.getOngoingTask(props.newTasksState);
+    }
+    
+
     return (
         <>
           <li className="task shadow">
@@ -45,6 +50,7 @@ const TaskComponent = props => {
                 <div className="actions">
                     <button type="button"
                     className="btn btn-primary"
+                    onClick={onClickEdit}
                     >
                         Edit
                     </button>
