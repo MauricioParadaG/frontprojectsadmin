@@ -3,7 +3,7 @@ import React, { useReducer } from 'react';
 
 import taskContext from './taskContext';
 import TaskReducer from './taskReducer';
-import {GET_TASKSBYID, ADDNEWTASK_TOLIST, FORM_VALIDATION, DELETE_TASK, COMPLETE_TASK, ONGOING_TASK} from '../../types/index';
+import {GET_TASKSBYID, ADDNEWTASK_TOLIST, FORM_VALIDATION, DELETE_TASK, COMPLETE_TASK, ONGOING_TASK, UPDATE_TASK} from '../../types/index';
 
 // Simulando datos que llegan de 
 
@@ -81,6 +81,15 @@ const TaskState = props => {
             payload: newTask
         })
     }
+    
+    // Update a task that after been edited
+    const setUpdateTask = newTask =>{
+        dispatch({
+            type: UPDATE_TASK,
+            payload: newTask
+        })
+    }
+
 
 /*
     // Put newTasks into the list
@@ -92,22 +101,6 @@ const TaskState = props => {
             payload: newProject
         })
     }
-
-
-    // Changing the selected proyect information
-    const setselectedProjectState = newProjectID =>{
-        dispatch({
-            type: SELECTED_PROJECT,
-            payload: newProjectID
-        })
-    }
-
-    const setDeleteProjectState = newProjectID =>{
-        dispatch({
-            type: DELETE_PROJECT,
-            payload: newProjectID
-        })
-    }
 */
 
 
@@ -117,13 +110,14 @@ const TaskState = props => {
             newTasksState: state.newTasks,
             taskProjectDataState: state.taskProjectData,
             formErrorState: state.formError,
-            selectedTask: state.taskSelected,
+            selectedTaskState: state.taskSelected,
             setNewTasksState,
             setAddTaskToList,
             setShowErrorFormState,
             setDeleteTask,
             setCompleteTask,
-            getOngoingTask
+            getOngoingTask,
+            setUpdateTask
           }}
         >
             {props.children}

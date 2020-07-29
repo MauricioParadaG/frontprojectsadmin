@@ -1,4 +1,4 @@
-import {GET_TASKSBYID, ADDNEWTASK_TOLIST, FORM_VALIDATION, DELETE_TASK, COMPLETE_TASK, ONGOING_TASK} from '../../types/index';
+import {GET_TASKSBYID, ADDNEWTASK_TOLIST, FORM_VALIDATION, DELETE_TASK, COMPLETE_TASK, ONGOING_TASK, UPDATE_TASK} from '../../types/index';
 
 export default (state, action) => {
     switch (action.type){
@@ -68,7 +68,7 @@ export default (state, action) => {
                 newTasks: state.newTasks.filter(deleteTask => deleteTask.id !== action.payload)
                 //selectedProject: null
             }  
-
+        
         case COMPLETE_TASK:
             return {
                 ...state,
@@ -83,6 +83,17 @@ export default (state, action) => {
                 ...state,
                 taskSelected: action.payload
             }
+
+        case UPDATE_TASK:
+            return {
+                ...state,
+                newTasks: state.newTasks.map(newTask => newTask.id === action.payload.id ?
+                    action.payload
+                    : newTask
+                    ),
+                taskSelected: null
+            }
+
 
         default: 
         return state;

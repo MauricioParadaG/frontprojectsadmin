@@ -10,6 +10,7 @@ const ListedProjectsComponent = () => {
     // Getting the data of projects from the Database
     useEffect(() => {
         projectsContext.setNewProjectsState();
+        //eslint-disable-next-line
     }, []);
 
     if (projectsContext.newProjectsState.length === 0) return <p>Add your first project</p>; 
