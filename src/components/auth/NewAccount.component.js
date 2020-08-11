@@ -1,7 +1,10 @@
-import React, {useState} from 'react';
+import React, {useState, useContext} from 'react';
 import {Link} from 'react-router-dom';
+import AuthContext from '../../context/loginsignup/authContext';
 
 const NewAccountComponent = () => {
+
+    const authContext = useContext(AuthContext);
 
     const [createAccountForm, setCreateAccountFormState] = useState(
         {
@@ -24,6 +27,12 @@ const NewAccountComponent = () => {
 
     const onSubmit = event => {
         event.preventDefault();
+
+        // Validation
+
+        // register a user function from Context
+        authContext.signupUser(createAccountForm);
+
     }
 
     return (
