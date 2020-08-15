@@ -9,6 +9,7 @@ import ProjectState from './context/projects/projectState';
 import TaskState from './context/task/taskState';
 
 import AuthState from './context/loginsignup/authState';
+import AlertState from './context/alerts/alertState';
 
 ///
 function App() {
@@ -18,6 +19,7 @@ function App() {
   return (
     <ProjectState>
       <TaskState>
+        <AlertState>
         <AuthState>
         <Router>
           <Switch>
@@ -29,6 +31,7 @@ function App() {
           </Switch>
         </Router>
         </AuthState>
+        </AlertState>
       </TaskState>
     </ProjectState>
   );

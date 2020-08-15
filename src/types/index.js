@@ -12,6 +12,9 @@ export const COMPLETE_TASK ='COMPLETE_TASK';
 export const ONGOING_TASK ='ONGOING_TASK';
 export const UPDATE_TASK ='UPDATE_TASK';
 
+export const SHOW_ALERT ='SHOW_ALERT';
+export const HIDE_ALERT ='HIDE_ALERT';
+
 export const SIGNUP_SUCCESSFULL ='SIGNUP_SUCCESSFULL';
 export const SIGNUP_ERROR ='SIGNUP_ERROR';
 export const GET_USER ='GET_USER';
