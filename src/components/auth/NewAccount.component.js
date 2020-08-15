@@ -2,9 +2,12 @@ import React, {useState, useContext} from 'react';
 import {Link} from 'react-router-dom';
 import AuthContext from '../../context/loginsignup/authContext';
 
+import { useForm } from 'react-hook-form';
+
 const NewAccountComponent = () => {
 
     const authContext = useContext(AuthContext);
+    const { register, handleSubmit, errors } = useForm();
 
     const [createAccountForm, setCreateAccountFormState] = useState(
         {
@@ -15,6 +18,7 @@ const NewAccountComponent = () => {
         }
       );
 
+      /*
     const onChangeAccount = event => {
         setCreateAccountFormState({
             ...createAccountForm,
@@ -23,24 +27,34 @@ const NewAccountComponent = () => {
             // adding the form info to the state
             [event.target.name]: event.target.value
         });
-    }  
+    }
+    */
 
+    const onSubmit = data => {
+        console.log(data);
+      
+        // Validation ??
+
+        // register a user function from Context
+        authContext.signupUser(createAccountForm);
+      }
+
+      /*
     const onSubmit = event => {
         event.preventDefault();
 
         // Validation
-
         // register a user function from Context
         authContext.signupUser(createAccountForm);
-
     }
+    */
 
     return (
     <div className="form-user">
         <div className="container-form shadow-dark">
             <h1>Create New Account</h1>
 
-            <form onSubmit={onSubmit}>
+            <form onSubmit={handleSubmit(onSubmit)}>
 
                 <div className="field-form">
                     <label htmlFor="name">Name</label>
@@ -48,9 +62,12 @@ const NewAccountComponent = () => {
                     id="name"
                     name="name"
                     placeholder="Name"
-                    value={createAccountForm.name}
-                    onChange={onChangeAccount}
+                    ref={register({ required: true })}
+                   //value={createAccountForm.name}
+                   //onChange={onChangeAccount}
                     />
+              {errors.name?.type === 'required' && <span>Nombre obligatorio.</span>
+              }
                 </div>
 
                 <div className="field-form">
@@ -59,9 +76,17 @@ const NewAccountComponent = () => {
                     id="email"
                     name="email"
                     placeholder="Email"
-                    value={createAccountForm.email}
-                    onChange={onChangeAccount}
+                    ref={register({ 
+                        required: true,
+                        pattern: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i
+                      })}
+                    //value={createAccountForm.email}
+                    //onChange={onChangeAccount}
                     />
+              {errors.email?.type === 'required' && <span>Debes indicar un correo electrónico.</span>
+              }
+              {errors.email?.type === 'pattern' && <span>Debes indicar un correo electrónico válido.</span>
+              }
                 </div>
 
                 <div className="field-form">
@@ -69,10 +94,16 @@ const NewAccountComponent = () => {
                     <input type="password"
                     id="password"
                     name="password"
-                    placeholder="*******"
-                    value={createAccountForm.password}
-                    onChange={onChangeAccount}
+                    placeholder="*******"ç
+                    ref={register({ required: true, minLength: 6 })}
+                    //value={createAccountForm.password}
+                    //onChange={onChangeAccount}
                     />
+              {errors.password?.type === 'required' && <span>Contraseña obligatoria.</span>
+              }
+
+              {errors.password?.type === 'minLength' && <span>Tu contraseña debe tener al menos 8 caracteres. Inténtalo de nuevo.</span>
+              }
                 </div>
 
                 <div className="field-form">
@@ -81,9 +112,15 @@ const NewAccountComponent = () => {
                     id="confirm"
                     name="confirm"
                     placeholder="*******"
-                    value={createAccountForm.confirm}
-                    onChange={onChangeAccount}
+                    ref={register({ required: true, minLength: 6 })}
+                    //value={createAccountForm.confirm}
+                    //onChange={onChangeAccount}
                     />
+              {errors.confirm?.type === 'required' && <span>Confirmar la contraseña.</span>
+              }
+
+              {errors.confirm?.type === 'minLength' && <span>Tu contraseña debe tener al menos 8 caracteres. Inténtalo de nuevo.</span>
+              }
                 </div>
 
                 {/** Button */}
